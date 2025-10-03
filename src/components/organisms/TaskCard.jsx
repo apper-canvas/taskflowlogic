@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
+import React, { forwardRef } from "react";
 import { format } from "date-fns";
-import Checkbox from "@/components/atoms/Checkbox";
-import Button from "@/components/atoms/Button";
+import ApperIcon from "@/components/ApperIcon";
 import PriorityBadge from "@/components/molecules/PriorityBadge";
 import DueDateBadge from "@/components/molecules/DueDateBadge";
-import ApperIcon from "@/components/ApperIcon";
-
-const TaskCard = ({ task, onToggleComplete, onDelete }) => {
+import Button from "@/components/atoms/Button";
+import Checkbox from "@/components/atoms/Checkbox";
+const TaskCard = forwardRef(({ task, onToggleComplete, onDelete }, ref) => {
   return (
     <motion.div
+      ref={ref}
       layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -74,8 +75,10 @@ const TaskCard = ({ task, onToggleComplete, onDelete }) => {
           <ApperIcon name="Trash2" size={18} />
         </Button>
       </div>
-    </motion.div>
+</motion.div>
   );
-};
+});
+
+TaskCard.displayName = 'TaskCard';
 
 export default TaskCard;
